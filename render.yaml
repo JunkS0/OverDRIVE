@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: overdrive-game-server
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_ORIGIN
+        value: https://overdrive-game.vercel.app
+      - key: REDIS_URL
+        fromService:
+          name: overdrive-redis
+          type: redis
+          property: connectionString
+
+  - type: redis
+    name: overdrive-redis
+    plan: free
+    maxmemoryPolicy: allkeys-lru
+
+  - type: worker
+    name: overdrive-physics-worker
+    env: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: node server/physics-worker.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REDIS_URL
+        fromService:
+          name: overdrive-redis
+          type: redis
+          property: connectionString

@@ -1,0 +1,26 @@
+{
+  "name": "overdrive-game-server",
+  "version": "0.1.0",
+  "description": "OVERDRIVE 오픈월드 멀티플레이 드라이빙 게임 서버",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "client": "vite client/",
+    "build": "vite build client/"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5",
+    "redis": "^4.6.13",
+    "uuid": "^9.0.1",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3",
+    "vite": "^5.2.0"
+  }
+}
