@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.local
+*.log
+npm-debug.log*
+dist/
+build/
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+public/models/*.glb
